@@ -33,7 +33,7 @@ body {
 
 .time {
   /*background-color: aquamarine;*/
-  width: 600px;
+  width: 500px;
   margin-top: 10px;
 }
 
@@ -50,5 +50,39 @@ body {
 
 .time-task {
   margin-top: 25px;
-  
+  text-align: center;
+  margin-bottom: 25px;
+  font-size: 14px;
+  color: #ffffff;
+  opacity: 0.5;
+}
+
+.todo {
+  width: 600px;
+}
+
+.todo-check .text {
+  border: none;
+  background-color: #35384b;
+  width: 400px;
+  border-bottom: 3px solid #937ea7;
+  margin-right: 30px;
+  margin-top: 10px;
+  padding-left: 5px;
+  color: #ffffff;
+}
+
+
+.todo-check .btn {
+  background-color: #a97ece;
+  color: #ffffff;
+  border: none;
+  border-radius: 20px;
+  padding: 7px 35px;
+  cursor: pointer;
+}
+
+.todo-task {
+  list-style: none;
+  padding: 0;
 }
