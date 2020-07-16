@@ -1,0 +1,54 @@
+h1, p {
+  margin: 0;
+}
+
+body {
+  background-color: #35384b;
+
+  font-family: "Times New Roman";
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.header {
+  margin-top: 35px;
+  margin-bottom: 15px;
+  /*background-color: aquamarine;*/
+}
+
+.header-logo {
+  color: #d7dbe7;
+  font-size: 36px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
+.time {
+  /*background-color: aquamarine;*/
+  width: 600px;
+  margin-top: 10px;
+}
+
+.time-location {
+  display: flex;
+  justify-content: space-between;
+
+  font-size: 20px;
+  font-weight: bold;
+  color: #ffffff;
+
+  margin-bottom: 10px;
+}
+
+.time-task {
+  margin-top: 25px;
+  
+}
