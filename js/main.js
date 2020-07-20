@@ -23,46 +23,6 @@ setInterval(clock, 1000); //вызываем функцию, каждую сек
 
 
 //----------------------------------------Формирование To-do листа--------------------------------------------------------------------
-/*
-const addItems = document.querySelector('.todo-check');
-const itemsList = document.querySelector('.todo-task');
-const items = [];
-
-//функция, которая добавляет новые данные в объект, который потом сохраняется на сервере
-function addItem(e){
-  e.preventDefault(); //Метод preventDefault () интерфейса Event сообщает User agent, что если событие не обрабатывается явно, его действие по умолчанию не должно выполняться так, как обычно.
-  const text = (this.querySelector('[name=item]')).value; // помещаем данные из вводного поля и преобразуем в строку
-  //объект который содержит сведения и состояние флажка
-  const item = {
-    text,
-    done: false
-  };
-
-  items.push(item); 
-  populateList(items, itemsList); // вызываем функцию, которая будет собирать строку в парсер, который потом будет выводится
-  this.reset(); // очищаем поле ввода
-}
-
-// функция, которая будет создавать данные, которые будут добавляться на html страницу
-//plates = [] если данных не было, будет использован пустой массив
-function populateList(plates = [], platesList){
-  platesList.innerHTML = plates.map((plate, i) => {
-    return `
-      <li class="todo-item">
-        <p class="task-btn"> Start </p>
-        <label for="item${i}">${plate.text}</label>
-        <input type="checkbox" data-index=${i} id="item${i}" ${plate.done ? 'checked' : ''} />
-        <p class="task-time">00-00</p>
-      </li>
-    `
-  }).join('');
-  //взависмисоти от done выставляем или нет флажок, также связка делается на i
-
-}
-
-addItems.addEventListener('submit', addItem);
-
-*/
 
 const addItem = document.querySelector('.todo-check'); // Форма, которая добавляет задачу в список.
 const taskUl = document.querySelector('.todo-task'); // Список ul, в который будут добавляться новые задачи.
@@ -71,17 +31,37 @@ addItem.addEventListener('submit', function (e) {
 
   e.preventDefault(); // Отмена стандартного поведения. Нужно чтобы после отправки формы страница не перезагружалась.
 
-  const text = document.querySelector('.text').value; // Берём значение (текст), который записан в текстовом поле формы.
+  const textInput = document.querySelector('.text'); // Находим текстовое поле, которое используется в форме.
+
+  const text = textInput.value; // Берём значение (текст), который записан в текстовом поле формы.
 
   const taskHTML = `
     <li class="todo-item">
         <p class="task-btn"> Start </p>
-        <label>${text}</label>
+        <p class="todo-text">${text}</p>
         <input type="checkbox"/>
         <p class="task-time">00-00</p>
       </li>
   `; // Переменная, которая содержит базовую разметку для добавления задачи.
 
-  taskUl.insertAdjacentHTML('beforebegin', taskHTML); // insertAdjacentHTML(куда доабвлять, что добавлять) 
+  taskUl.insertAdjacentHTML('afterbegin', taskHTML); // insertAdjacentHTML(куда доабвлять, что добавлять) //'afterbegin': сразу после открывающего тега  element (перед первым потомком).
+
+  textInput.value = ''; // Очищаем текстовое поле, после добавления задачи.
 
 }); // Отслеживаем событие отправки формы. addEventListener(событие которое остслеживаем, вызыв функции на это событие);
+
+//---------------------------------------Делаем выборку задачи из всего списка, чтобы поставить её на таймер ------------------------
+let newTask = document.querySelector('.time-task');
+
+taskUl.addEventListener('click', function (e) {
+  console.log(e.target); // e.target - показывает на каком элементе произошло нажатие
+
+  if (e.target.className == 'task-btn') { // Проверяем, что нажали на кнопку Start
+    console.log(e.target.parentElement); // обращаемся к родителю
+    let taskLi = e.target.parentElement;
+
+    newTask.innerHTML = taskLi.querySelector('.todo-text').textContent; // Показываем задачу, которая выполняется в данный момент.
+    
+  }
+});
+
