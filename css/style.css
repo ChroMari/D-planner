@@ -72,6 +72,11 @@ body {
   color: #ffffff;
 }
 
+.todo-check {
+  display: flex;
+  justify-content: space-between;
+}
+
 
 .todo-check .btn {
   background-color: #a97ece;
@@ -90,5 +95,82 @@ body {
 
 
 .todo-item {
-  
+  display: grid;
+  grid-template-columns: 1fr 9fr 1fr 1fr;
+  font-weight: bold;
+  font-size: 12px;
+  color: #ffffff;
+  padding: 15px 0px;
+  margin-bottom: 1px;
+  background: rgb(78,87,107);
+  background: linear-gradient(-90deg, rgba(78,87,107,0) 0%, rgba(78,87,107,1) 100%);
+}
+
+.task-btn {
+  background-color: #a97ece;
+  padding: 5px 15px;
+  border-radius: 20px;
+  width: 35px;
+  cursor: pointer;
+  margin-right: 10px;
+  margin-left: 10px;
+}
+
+.todo-text {
+  font-size: 14px;
+  margin-top: 5px;
+}
+
+*делаем чекбокс*/
+.login-checkbox {
+  position: relative;
+
+  padding-left: 30px;
+
+  cursor: pointer;
+}
+
+.login-checkbox:hover,
+.login-checkbox:focus {
+  color: #663d15;
+}
+
+/*визуальное представление чекбокса*/
+.login-checkbox input[type="checkbox"] + .checkbox-indicator {
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  width: 17px;
+  height: 17px;
+
+  border: 2px solid #000000;
+}
+
+.login-checkbox input[type="checkbox"]:focus + .checkbox-indicator {
+  border-color: #663d15;
+  outline: thin dotted;
+  outline: 5px auto -webkit-focus-right-color;
+}
+
+/*делаем крестик для чекбокса*/
+.login-checkbox input[type="checkbox"]:checked + .checkbox-indicator::before,
+.login-checkbox input[type="checkbox"]:checked + .checkbox-indicator::after {
+  content: "";
+
+  position: absolute;
+  top: 8px;
+  left: 1px;
+
+  width: 15px;
+  height: 2px;
+  background-color: #000000;
+}
+
+.login-checkbox input[type="checkbox"]:checked + .checkbox-indicator::before {
+  transform: rotate(45deg);
+}
+
+.login-checkbox input[type="checkbox"]:checked + .checkbox-indicator::after {
+  transform: rotate(-45deg);
 }
