@@ -45,7 +45,7 @@ addItem.addEventListener('submit', function (e) {
     <span class="checkbox-indicator"></span>
   </label>
 
-  <p class="task-time">00-00</p>
+  <p class="task-time">00 : 00</p>
 </li>
   `; // Переменная, которая содержит базовую разметку для добавления задачи.
 
@@ -102,6 +102,7 @@ function timer(seconds, flag) {
     const secondsLeft = Math.round((then - Date.now()) / 1000);
     // check if we should stop it!
     if(secondsLeft < 0) {
+      clearInterval(countdown);
 
       if (flag == 10) { //счётчик, который выводит количество помидор
         let sumPom = document.querySelector('.pomodor');
@@ -110,11 +111,22 @@ function timer(seconds, flag) {
         const timPom = document.querySelector('.tik-time');
         let Itogtime = Math.floor((+sumPom.textContent * 25) / 60);
         timPom.textContent = `${Math.floor((+sumPom.textContent * 25) / 60)} : ${(+sumPom.textContent * 25) % 60 < 10 ? '0' : '' }${(+sumPom.textContent * 25) % 60}`;
+
+        //-------------------Ищем задачу и добавляем время-----------------
+        const task = document.querySelector('.time-task');
+        const spisok = taskUl.querySelectorAll('.todo-item');
+        
+        for (let i = 0; i < spisok.length; i++) {
+          console.log(spisok[i]);
+          if (spisok[i].querySelector('.todo-text').textContent == task.textContent) {
+            const newTim = document.querySelector('.task-time');
+            const newTim2 = newTim.textContent.split(' : ');
+            const timeIt = +newTim2[0] * 60 + +newTim2[1] + 25;
+            newTim.textContent = `${Math.floor(timeIt / 60)} : ${timeIt % 60 < 10 ? '0' : '' }${timeIt % 60}`;
+
+          }
+        }
       }
-
-    
-
-      clearInterval(countdown);
       return;
     }
     // display it
@@ -137,3 +149,5 @@ function startTimer() {
 }
 
 buttons.forEach(button => button.addEventListener('click', startTimer));
+
+//----------------------------------------------
