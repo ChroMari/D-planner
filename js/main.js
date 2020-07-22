@@ -88,7 +88,9 @@ let countdown;
 const timerDisplay = document.querySelector('.tik-tak');
 const buttons = document.querySelectorAll('[data-time]');
 
-function timer(seconds) {
+
+
+function timer(seconds, flag) {
   // clear any existing timers
   clearInterval(countdown);
 
@@ -100,12 +102,25 @@ function timer(seconds) {
     const secondsLeft = Math.round((then - Date.now()) / 1000);
     // check if we should stop it!
     if(secondsLeft < 0) {
+
+      if (flag == 10) { //счётчик, который выводит количество помидор
+        let sumPom = document.querySelector('.pomodor');
+        sumPom.textContent = 1 + +sumPom.textContent;
+
+        const timPom = document.querySelector('.tik-time');
+        let Itogtime = Math.floor((+sumPom.textContent * 25) / 60);
+        timPom.textContent = `${Math.floor((+sumPom.textContent * 25) / 60)} : ${(+sumPom.textContent * 25) % 60 < 10 ? '0' : '' }${(+sumPom.textContent * 25) % 60}`;
+      }
+
+    
+
       clearInterval(countdown);
       return;
     }
     // display it
     displayTimeLeft(secondsLeft);
   }, 1000);
+
 }
 
 function displayTimeLeft(seconds) {
@@ -118,7 +133,7 @@ function displayTimeLeft(seconds) {
 
 function startTimer() {
   const seconds = parseInt(this.dataset.time);
-  timer(seconds);
+  timer(seconds, seconds);
 }
 
 buttons.forEach(button => button.addEventListener('click', startTimer));
