@@ -36,12 +36,17 @@ addItem.addEventListener('submit', function (e) {
   const text = textInput.value; // Берём значение (текст), который записан в текстовом поле формы.
 
   const taskHTML = `
-    <li class="todo-item">
-        <p class="task-btn"> Start </p>
-        <p class="todo-text">${text}</p>
-        <input type="checkbox"/>
-        <p class="task-time">00-00</p>
-      </li>
+  <li class="todo-item">
+  <p class="task-btn"> Start </p>
+  <p class="todo-text">${text}</p>
+
+  <label class="login-checkbox">
+    <input type="checkbox" class="visually-hidden"/>
+    <span class="checkbox-indicator"></span>
+  </label>
+
+  <p class="task-time">00-00</p>
+</li>
   `; // Переменная, которая содержит базовую разметку для добавления задачи.
 
   taskUl.insertAdjacentHTML('afterbegin', taskHTML); // insertAdjacentHTML(куда доабвлять, что добавлять) //'afterbegin': сразу после открывающего тега  element (перед первым потомком).
@@ -73,8 +78,47 @@ taskUl.addEventListener('click', function (e) {
     
     taskLi.querySelector('.task-btn').style.opacity = "0";
     taskLi.querySelector('.task-btn').style.cursor = "default";
-    
+
     taskLi.style.background = "linear-gradient(-90deg, rgba(78,87,107,0) 0%, rgba(169,126,206,1) 100%)";
   }
 });
 
+//-------------------------------------------------Таймер----------------------------
+let countdown;
+const timerDisplay = document.querySelector('.tik-tak');
+const buttons = document.querySelectorAll('[data-time]');
+
+function timer(seconds) {
+  // clear any existing timers
+  clearInterval(countdown);
+
+  const now = Date.now();
+  const then = now + seconds * 1000;
+  displayTimeLeft(seconds);
+
+  countdown = setInterval(() => {
+    const secondsLeft = Math.round((then - Date.now()) / 1000);
+    // check if we should stop it!
+    if(secondsLeft < 0) {
+      clearInterval(countdown);
+      return;
+    }
+    // display it
+    displayTimeLeft(secondsLeft);
+  }, 1000);
+}
+
+function displayTimeLeft(seconds) {
+  const minutes = Math.floor(seconds / 60);
+  const remainderSeconds = seconds % 60;
+  const display = `${minutes}:${remainderSeconds < 10 ? '0' : '' }${remainderSeconds}`;
+  document.title = display;
+  timerDisplay.textContent = display;
+}
+
+function startTimer() {
+  const seconds = parseInt(this.dataset.time);
+  timer(seconds);
+}
+
+buttons.forEach(button => button.addEventListener('click', startTimer));
