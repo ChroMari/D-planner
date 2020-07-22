@@ -1,4 +1,4 @@
-h1, p {
+h1, h2, p, span {
   margin: 0;
 }
 
@@ -119,52 +119,67 @@ body {
 .todo-text {
   font-size: 14px;
   margin-top: 5px;
+  width: 415px;
+
 }
 
-*делаем чекбокс*/
 .login-checkbox {
   position: relative;
-
-  padding-left: 30px;
-
   cursor: pointer;
 }
 
 .login-checkbox:hover,
 .login-checkbox:focus {
-  color: #663d15;
+  color: #a97ece;
 }
 
-/*визуальное представление чекбокса*/
+
 .login-checkbox input[type="checkbox"] + .checkbox-indicator {
   position: absolute;
   top: 0;
   left: 0;
 
-  width: 17px;
-  height: 17px;
+  width: 15px;
+  height: 15px;
 
-  border: 2px solid #000000;
+  border: 2px solid #a97ece;
+  border-radius: 50%;
 }
 
 .login-checkbox input[type="checkbox"]:focus + .checkbox-indicator {
-  border-color: #663d15;
+  border-color: #a97ece;
   outline: thin dotted;
   outline: 5px auto -webkit-focus-right-color;
 }
 
-/*делаем крестик для чекбокса*/
-.login-checkbox input[type="checkbox"]:checked + .checkbox-indicator::before,
-.login-checkbox input[type="checkbox"]:checked + .checkbox-indicator::after {
+
+.login-checkbox input[type="checkbox"]:checked + .checkbox-indicator::before {
   content: "";
 
   position: absolute;
   top: 8px;
   left: 1px;
 
+  width: 7px;
+  height: 2px;
+  background-color: #ffffff;
+}
+
+.login-checkbox input[type="checkbox"]:checked + .checkbox-indicator::after {
+  content: "";
+
+  position: absolute;
+  top: 6px;
+  left: 4px;
+
   width: 15px;
   height: 2px;
-  background-color: #000000;
+  background-color: #ffffff;
+}
+
+
+.login-checkbox input[type="checkbox"]:checked + .checkbox-indicator {
+  background-color: #a97ece;
 }
 
 .login-checkbox input[type="checkbox"]:checked + .checkbox-indicator::before {
@@ -173,4 +188,85 @@ body {
 
 .login-checkbox input[type="checkbox"]:checked + .checkbox-indicator::after {
   transform: rotate(-45deg);
+}
+
+/*служебный класс*/
+.visually-hidden:not(:focus):not(:active),
+input[type="checkbox"].visually-hidden,
+input[type="radio"].visually-hidden {
+  position: absolute;
+
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  bottom: 0;
+  padding: 0;
+
+  white-space: nowrap;
+
+  clip-path: inset(100%);
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+}
+
+.task-time {
+  margin-top: 5px;
+}
+
+.tik {
+  background-color: #e9e9e9;
+  max-width: 265px;
+  margin: 0 auto;
+  border-radius: 5px;
+}
+
+.tik-title {
+  padding-top: 20px;
+  text-align: center;
+
+  font-size: 18px;
+  font-weight: bold;
+  color: #35384b;
+}
+
+.tik-tak {
+  font-size: 30px;
+  font-weight: bold;
+  color: #a97ece;
+  text-align: center;
+  padding-top: 90px;
+  padding-bottom: 90px;
+
+  position: relative;
+}
+
+.tik-tak::before {
+  position: absolute;
+  content: '';
+  top: 16%;
+  left: 21%;
+  width: 150px;
+  height: 150px;
+  border: 2px solid #a97ece;
+  border-radius: 50%;
+}
+
+.tik-text {
+  padding-bottom: 45px;
+
+  font-size: 14px;
+  font-weight: bold;
+  color: #35384b;
+
+  padding-left: 15px;
+}
+
+.tik-btn {
+  background-color: #35384b;
+  color: #ffffff;
+
+  padding: 5px 30px;
+  border-radius: 20px;
+  width: 60px;
+  cursor: pointer;
 }

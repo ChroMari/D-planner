@@ -58,10 +58,23 @@ taskUl.addEventListener('click', function (e) {
 
   if (e.target.className == 'task-btn') { // Проверяем, что нажали на кнопку Start
     console.log(e.target.parentElement); // обращаемся к родителю
-    let taskLi = e.target.parentElement;
+
+    const taskLi = e.target.parentElement;
 
     newTask.innerHTML = taskLi.querySelector('.todo-text').textContent; // Показываем задачу, которая выполняется в данный момент.
     
+  }
+});
+
+//----------------------------------Проверка на то, какую задачу отметили выполненной----------------------------------------------
+taskUl.addEventListener('click', function (e) { 
+  if (e.target.checked) { // смотрим на то, где нажали галочку
+    const taskLi = e.target.parentElement.parentElement;
+    
+    taskLi.querySelector('.task-btn').style.opacity = "0";
+    taskLi.querySelector('.task-btn').style.cursor = "default";
+    
+    taskLi.style.background = "linear-gradient(-90deg, rgba(78,87,107,0) 0%, rgba(169,126,206,1) 100%)";
   }
 });
 
