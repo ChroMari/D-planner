@@ -3,6 +3,12 @@
 
 <h3>Демо-версия разработанного приложения: https://romantic-gates-d37c19.netlify.app/</h3>
 
+### Приложение в рабочем состояние:
+![alt tag](https://github.com/ChroMari/D-planner/blob/master/activetask.jpg)
+
+### Приложение спустя несколько выполненных задач:
+![alt tag](https://github.com/ChroMari/D-planner/blob/master/complite.jpg)
+
 ### Работа приложения:
 + Пользовать добавляет список задач в to-do лист.
 + Выбрав задачу пользователь нажимает на кнопку Start, после этого задача находится у него в работе.
