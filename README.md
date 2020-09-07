@@ -1,7 +1,7 @@
 <h1 align="center">D-Planner</h1>
 <h6 align="center">D-Planner - совмещает в себе планирование по типу 10 minutes planner. Так же позволяет вести отсчёт времени по системе помидор. И позволит повысить вашу продуктивность за счёт визуального представления ваших данных.</h6>
 
-<h3>Демо-версия разработанного приложения: https://romantic-gates-d37c19.netlify.app/</h3>
+<h3>Демо-версия разработанного приложения: https://chromari-planner-d.netlify.app/</h3>
 
 ### Приложение в рабочем состояние:
 ![alt tag](https://github.com/ChroMari/D-planner/blob/master/activetask.jpg)
